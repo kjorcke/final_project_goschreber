@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import {Card, Container, Row, Col, Form, Button} from "react-bootstrap";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 
 
 function Inserieren({kgvs}) {
 
 const [anzeige, setAnzeige] = useState({titel:'', beschreibung:'', kgv:'', pachtkosten:'', preis:'', verfügbar:'', gartemqm:''})
-const [gartenId, setGartenId] = useState("");
+const history = useHistory();
+/* 
+const [gartenId, setGartenId] = useState(""); */
     
 function handleSelect(e){
     const verein = (kgvs.filter((verein) => verein.kgvname == e.target.value))
@@ -15,13 +18,17 @@ function handleSelect(e){
      console.log(e.target.value)
      console.log(verein)
 
-    setGartenId(verein.map(el => el._id))
-    console.log(gartenId) 
+    const kgv = (verein.map(el => el._id))
+    console.log(kgv)
+    
+    setAnzeige({...anzeige, kgv:kgv})
  }
 
-function handleSubmit() {
+function handleSubmit(e) {
+    e.preventDefault();
     {axios.post("http://localhost:5000/anzeigens", anzeige)
-    .then(res => {console.log("finally")})
+    .then(() => {history.push("/frei")})
+    
     }}
 
 
@@ -68,20 +75,19 @@ return (
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                        <Form.Label>Kleingartenverein</Form.Label>
-                                        <Form.Control onChange={handleSelect} type="" name="kgvname" 
-                                        as="select">
-                                        <option>bitte auswählen</option>
-                                        {kgvs.map(verein => <option>{verein.kgvname}</option>)}
-                                        </Form.Control>
-                                    </Form.Group>
-                                    <Form.Group type="text" name="kgv" controlId="exampleForm.ControlSelect1">
-                                        <Form.Control value={gartenId} type="hidden" name="gartenId" ></Form.Control>
-                                    </Form.Group>
-                                    <Button variant="success" type="submit">
-                                    Anzeige aufgeben
-                                    </Button>
+                                                <Form.Group controlId="exampleForm.ControlSelect1">
+                                                    <Form.Label>Kleingartenverein</Form.Label>
+                                                    <Form.Control onChange={handleSelect} type="" name="kgvname" 
+                                                    as="select">
+                                                    <option>bitte auswählen</option>
+                                                    {kgvs.map(verein => <option>{verein.kgvname}</option>)}
+                                                    </Form.Control>
+                                                </Form.Group>
+                                            
+                                                <Button variant="success" type="submit">
+                                                Anzeige aufgeben
+                                                </Button>
+                                                
                                 </Form>
                             </Card>
                     </Col>

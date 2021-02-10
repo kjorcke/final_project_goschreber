@@ -33,9 +33,10 @@ function FreieGaerten() {
         .then((json) => setGaerten(json.data))
         .catch((err) => setError(true));
         };
+
       useEffect(loadGaerten, []);
 
-      console.log(gaerten)
+      console.log(gaerten.sort((a , b) => b - a))
 
     /* const position = [51.330743159430824, 12.36348580378971]
     const carrotIcon = L.icon({
