@@ -1,0 +1,17 @@
+"data":[
+    {"adresse":{
+        "strasse":"Küchenholzallee",
+        "plz":"04249",
+        "stadt":"Leipzig"},
+    "geometry":{
+        "coordinates":[51.306849,12.337722],
+        "type":"Point"},
+    "ortsteil":[{
+        "_id":"6017f751c2bb5a5c4f9f720d",
+        "ortsteil":"Kleinzschocher"}],
+    "_id":"601820bf8d074dfcde2f142d",
+    "kgvname":"An der Küchenholzallee",
+    "email":"kgv.kuechenholzallee@outlook.de",
+    "parzellen":72,
+    "web":null}
+
