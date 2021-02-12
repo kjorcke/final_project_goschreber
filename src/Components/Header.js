@@ -27,6 +27,9 @@ function Header() {
                     <Nav.Item className="ml-6">
                         <Nav.Link href="/inserieren"><Button variant="success">Anzeige aufgeben</Button></Nav.Link>
                     </Nav.Item>
+                    <Nav.Item className="ml-6">
+                        <Nav.Link href="/verwalten"><Button variant="success">Anzeigen verwalten</Button></Nav.Link>
+                    </Nav.Item>
                 </Nav>
                 
         </Navbar.Collapse>

@@ -1,36 +1,37 @@
 import React, {useState} from 'react';
 import {Card, Container, Row, Col, Form, Button} from "react-bootstrap";
-import axios from 'axios';
-import { useHistory } from "react-router-dom";
 
 
 
-function Inserieren({kgvs}) {
 
-const [anzeige, setAnzeige] = useState({titel:'', beschreibung:'', kgv:'', pachtkosten:'', preis:'', verfügbar:'', gartemqm:''})
-const history = useHistory();
+
+function Inserieren({kgvs, anzeige, setAnzeige, handleSubmit}) {
+
+
 /* 
 const [gartenId, setGartenId] = useState(""); */
     
 function handleSelect(e){
     const verein = (kgvs.filter((verein) => verein.kgvname == e.target.value))
 
-     console.log(e.target.value)
-     console.log(verein)
-
     const kgv = (verein.map(el => el._id))
-    console.log(kgv)
     
     setAnzeige({...anzeige, kgv:kgv})
  }
 
-function handleSubmit(e) {
-    e.preventDefault();
-    {axios.post("http://localhost:5000/anzeigens", anzeige)
-    .then(() => {history.push("/frei")})
-    
-    }}
 
+
+/*
+      if (favourites.indexOf(gardenid) === -1){
+        setFavourites([
+          ...favourites,
+          gardenid
+        ])
+      } else {
+        
+        setFavourites(favourites.filter(item => item != gardenid))
+      }
+*/
 
 return (
    

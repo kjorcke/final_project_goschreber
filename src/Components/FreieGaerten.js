@@ -8,37 +8,12 @@ import  carrot from '../assets/carrot.png';
 
 
     
-function FreieGaerten() {
+function FreieGaerten({gaerten}) {
 
 
-    const [gaerten, setGaerten] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
   
-    const loadGaerten = (searchQuery) => {
-      const API_URL = "http://localhost:5000"
-      const url = `${API_URL}/anzeigens`
-      setIsLoading(true);
-      setError(false);
-  
-      fetch(url)
-        .then((res) => {
-        
-        console.log(res);
-  
-          if (!res.ok) throw new Error("Oh noo");
-          setIsLoading(false);
-          return res.json();
-        })
-        .then((json) => setGaerten(json.data))
-        .catch((err) => setError(true));
-        };
 
-      useEffect(loadGaerten, []);
-
-      console.log(gaerten.sort((a , b) => b - a))
-
-    /* const position = [51.330743159430824, 12.36348580378971]
+    const position = [51.330743159430824, 12.36348580378971]
     const carrotIcon = L.icon({
       iconUrl: carrot,
       iconSize:     [38, 38], // size of the icon
@@ -46,12 +21,12 @@ function FreieGaerten() {
       iconAnchor:   [19, 38],
       shadowAnchor: [4, 62],  // the same for the shadow
       popupAnchor:  [0, -38]
-    }); */
+    });
 
     return (
         <Container>
           <Row>
-            {/* <Col>
+            <Col>
                 <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
                   <TileLayer
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -76,7 +51,7 @@ function FreieGaerten() {
                     </Marker>  
                   ))}
                 </MapContainer>
-            </Col> */}
+            </Col>
             <Col>
             {gaerten.map(freigarten=> <FreiItem freigarten={freigarten} key={freigarten._id}/>)}
             </Col>
