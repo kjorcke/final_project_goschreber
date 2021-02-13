@@ -10,7 +10,7 @@ import {Container, Row, Col, Card, Button} from "react-bootstrap";
 
 
 
-function Map({kgvs}) {
+function Map({kgvs, favouriteGarden, favouritedItems}) {
 
 
   const position = [51.330743159430824, 12.36348580378971]
@@ -23,7 +23,7 @@ function Map({kgvs}) {
     popupAnchor:  [0, -38]
   });
 
-  const [favourites, setFavourites] = useLocalStorage('favourite', []);
+/*   const [favourites, setFavourites] = useLocalStorage('favourite', []);
 
   function favouriteGarden(gardenid) {
 
@@ -42,7 +42,7 @@ function Map({kgvs}) {
     }
 
     const favouritedItems = kgvs.filter(({_id}) => favourites.indexOf(_id) != -1)
-    console.log(favouritedItems)
+    console.log(favouritedItems) */
   
 
     return (
@@ -84,14 +84,14 @@ function Map({kgvs}) {
         </Col>
 
         <Col>
-            {kgvs.map(verein => <KgvItem favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)} 
+            {/* {kgvs.map(verein => <KgvItem favClick={favouriteGarden} verein={verein} key={verein._id}/>)}  */}
         </Col>
         <Col>
           <h2>Favourite List</h2>
-          <CopyToClipboard text={favouritedItems.map(el => el.email)}>
+          {/* <CopyToClipboard text={favouritedItems.map(el => el.email)}>
             <button>clipboard all email addresses</button>
-          </CopyToClipboard>
-          {favouritedItems.map(verein => <Favourites favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
+          </CopyToClipboard> */}
+          {/* {favouritedItems.map(verein => <Favourites favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)} */}
         </Col>
       </Row>
     </Container>

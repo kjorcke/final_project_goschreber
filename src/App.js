@@ -9,6 +9,8 @@ import Layout from './Components/Layout';
 import FreieGaerten from './Components/FreieGaerten';
 import Inserieren from './Components/Inserieren';
 import Verwaltung from './Components/Verwaltung';
+import KgvItem from './Components/KgvItem';
+import Favourites from './Components/Favourites';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import useLocalStorage from './useLocalStorage';
@@ -25,7 +27,7 @@ function App() {
   
 
   const loadKgvs = (searchQuery) => {
-    const API_URL = "http://localhost:5000"
+    const API_URL = "https://goschreber.herokuapp.com"
     const url = `${API_URL}/kgvs`
     setIsLoading(true);
     setError(false);
@@ -48,7 +50,7 @@ function App() {
   
   
   const loadGaerten = (searchQuery) => {
-      const API_URL = "http://localhost:5000"
+      const API_URL = "https://goschreber.herokuapp.com"
       const url = `${API_URL}/anzeigens`
       setIsLoading(true);
       setError(false);
@@ -67,11 +69,11 @@ function App() {
         };
 
       useEffect(loadGaerten, []);
-
+/* //////////////////////////// ANZEIGEN IN LOCAL STORAGE///////////////////////////////////// */
   function handleSubmit(e) {
     e.preventDefault();
     axios
-        .post("http://localhost:5000/anzeigens", anzeige)
+        .post("https://goschreber.herokuapp.com/anzeigens", anzeige)
         .then((res) => {
             const {_id} = res.data.data;
             setOwnAnzeige([
@@ -80,26 +82,48 @@ function App() {
             ]);
             
             /* history.push('/frei') */
-        })
-        
+        })  
   }
-  
   const userAnzeigen = gaerten.filter(({_id}) => ownAnzeige.indexOf(_id) != -1)
 
+  /* ////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+  /* ///////////////////// SETTING FAVOURITES IN LOCAL STORAGE /////////////////////*/
+  /* ////////////////////////////////////////////////////////////////////////////////*/
+
+  const [favourites, setFavourites] = useLocalStorage('favourite', []);
+  
+function favouriteGarden(gardenid) {
+
+    console.log(gardenid)
+    console.log(favourites.indexOf(gardenid))
+
+    if (favourites.indexOf(gardenid) === -1){
+      setFavourites([
+        ...favourites,
+        gardenid
+      ])
+    } else {
+      
+      setFavourites(favourites.filter(item => item != gardenid))
+    }
+  }
+
+  const favouritedItems = kgvs.filter(({_id}) => favourites.indexOf(_id) != -1)
+  console.log(favouritedItems)
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
   return (
-    
-  <Container fluid>
-    <Row>
-      <Col>
-      <Header />
-      </Col>
-    </Row>
-    <Row>
-      <Col>
-      <Router>    
+      <Router>
+        <Header />
+           
         <Switch>
           <Route exact path="/"> 
             <Map kgvs={kgvs}/>
+            {kgvs.map(verein => <KgvItem favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
           </Route>
           <Route exact path="/frei"> 
             <FreieGaerten gaerten= {gaerten} kgvs={kgvs}/>
@@ -110,12 +134,11 @@ function App() {
           <Route exact path="/verwalten"> 
             <Verwaltung userAnzeigen={userAnzeigen} gaerten= {gaerten} kgvs={kgvs}/>
           </Route>
+          <Route exact path="/merken"> 
+              {favouritedItems.map(verein => <Favourites favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
+          </Route>
         </Switch>  
       </Router>
-      </Col>
-    </Row>
-      
-  </Container>        
   )
 }
 
