@@ -36,10 +36,13 @@ function handleSelect(e){
 return (
    
      <Container>
-            <Row className="justify-content-md-center">
-                    <Col>
-                       <Card style={{ width: '40rem' }}>
+            <Row className="justify-content-md-center mt-5">
+                    <Col xs={8}>
+                       <Card  border="success" className="justify-content-md-center" >
                                 <Form onSubmit={handleSubmit} className="m-3" >
+                                <h5 className="mb-3">
+                                   Anzeigendetails
+                                </h5>
                                     <Form.Group controlId="exampleForm.ControlTextarea1">
                                         <Form.Label>Titel der Anzeige</Form.Label>
                                     <Form.Control value={anzeige.titel} onChange={(e) => setAnzeige({...anzeige, titel:e.target.value})} type="text" name="titel"  as="textarea" rows={1} />
@@ -76,6 +79,7 @@ return (
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
+
                                                 <Form.Group controlId="exampleForm.ControlSelect1">
                                                     <Form.Label>Kleingartenverein</Form.Label>
                                                     <Form.Control onChange={handleSelect} type="" name="kgvname" 
@@ -84,7 +88,21 @@ return (
                                                     {kgvs.map(verein => <option>{verein.kgvname}</option>)}
                                                     </Form.Control>
                                                 </Form.Group>
-                                            
+                                                <h5 className="mb-3">
+                                                    Anbieterdetails
+                                                </h5>
+                                                <Form.Group controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Label>Name</Form.Label>
+                                                    <Form.Control value={anzeige.name} onChange={(e) => setAnzeige({...anzeige, name:e.target.value})} type="text" name="name"  as="textarea" rows={1} />
+                                                 </Form.Group>
+                                                 <Form.Group controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Label>Email</Form.Label>
+                                                    <Form.Control value={anzeige.email} onChange={(e) => setAnzeige({...anzeige, email:e.target.value})} type="text" name="email"  as="textarea" rows={1} />
+                                                 </Form.Group>
+                                                 <Form.Group controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Label>Telefonnummer</Form.Label>
+                                                    <Form.Control value={anzeige.telefon} onChange={(e) => setAnzeige({...anzeige, telefon:e.target.value})} type="text" name="telefon"  as="textarea" rows={1} />
+                                                 </Form.Group>
                                                 <Button variant="success" type="submit">
                                                 Anzeige aufgeben
                                                 </Button>

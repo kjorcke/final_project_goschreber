@@ -5,6 +5,7 @@ import FreiItem from "./FreiItem";
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import L from "leaflet";
 import  carrot from '../assets/carrot.png';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 
     
@@ -24,10 +25,10 @@ function FreieGaerten({gaerten}) {
     });
 
     return (
-        <Container>
+        <Container fluid>
           <Row>
-            <Col>
-                <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+            <Col xs={8}>
+                <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
                   <TileLayer
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -53,7 +54,9 @@ function FreieGaerten({gaerten}) {
                 </MapContainer>
             </Col>
             <Col>
-            {gaerten.map(freigarten=> <FreiItem freigarten={freigarten} key={freigarten._id}/>)}
+              <Scrollbars style={{ width: "100%", height: "100%" }}>
+                {gaerten.map(freigarten=> <FreiItem freigarten={freigarten} key={freigarten._id}/>)}
+              </Scrollbars>
             </Col>
           </Row>
         </Container>

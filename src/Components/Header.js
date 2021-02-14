@@ -9,7 +9,7 @@ function Header() {
         <Container fluid>
             <Row>
                 <Col>
-            <Navbar bg="sucess" expand="xl">
+            <Navbar expand="xl">
             <Navbar.Brand href="#">Go Schreber</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav" >

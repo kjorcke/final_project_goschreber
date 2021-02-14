@@ -23,7 +23,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [gaerten, setGaerten] = useState([]);
-  const [anzeige, setAnzeige] = useState({titel:'', beschreibung:'', kgv:'', pachtkosten:'', preis:'', verfügbar:'', gartemqm:''})
+  const [anzeige, setAnzeige] = useState({titel:'', beschreibung:'', kgv:'', pachtkosten:'', preis:'', verfügbar:'', gartemqm:'', name:'', email:'', telefon:''})
   const [ownAnzeige, setOwnAnzeige] = useLocalStorage('anzeigen', []);
   const history = useHistory();
   
