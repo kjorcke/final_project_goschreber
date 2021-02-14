@@ -22,39 +22,14 @@ function Map({kgvs, favouriteGarden, favouritedItems}) {
     shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [0, -38]
   });
-
-/*   const [favourites, setFavourites] = useLocalStorage('favourite', []);
-
-  function favouriteGarden(gardenid) {
-
-      console.log(gardenid)
-      console.log(favourites.indexOf(gardenid))
-
-      if (favourites.indexOf(gardenid) === -1){
-        setFavourites([
-          ...favourites,
-          gardenid
-        ])
-      } else {
-        
-        setFavourites(favourites.filter(item => item != gardenid))
-      }
-    }
-
-    const favouritedItems = kgvs.filter(({_id}) => favourites.indexOf(_id) != -1)
-    console.log(favouritedItems) */
   
 
     return (
-    <Container fluid>
-      <Row>
-        <Col xs={7}>
               <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
               <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-
             {kgvs.map(verein => (
                 <Marker
                   key={verein._id}
@@ -81,21 +56,6 @@ function Map({kgvs, favouriteGarden, favouritedItems}) {
                 </Marker>  
               ))}
             </MapContainer>
-        </Col>
-
-        <Col>
-            {/* {kgvs.map(verein => <KgvItem favClick={favouriteGarden} verein={verein} key={verein._id}/>)}  */}
-        </Col>
-        <Col>
-          <h2>Favourite List</h2>
-          {/* <CopyToClipboard text={favouritedItems.map(el => el.email)}>
-            <button>clipboard all email addresses</button>
-          </CopyToClipboard> */}
-          {/* {favouritedItems.map(verein => <Favourites favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)} */}
-        </Col>
-      </Row>
-    </Container>
-   
     )
 }
 

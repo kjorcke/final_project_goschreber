@@ -14,6 +14,8 @@ import Favourites from './Components/Favourites';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import useLocalStorage from './useLocalStorage';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 function App() {
   
@@ -119,11 +121,20 @@ function favouriteGarden(gardenid) {
   return (
       <Router>
         <Header />
-           
         <Switch>
-          <Route exact path="/"> 
-            <Map kgvs={kgvs}/>
-            {kgvs.map(verein => <KgvItem favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
+          <Route exact path="/">
+            <Container fluid>
+              <Row>
+                <Col xs={9}>
+                  <Map kgvs={kgvs}/>
+                </Col>
+                <Col>
+                  <Scrollbars style={{ width: "100%", height: "100%" }}>
+                    {kgvs.map(verein => <KgvItem favouritedItems={favouritedItems} favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
+                 </Scrollbars>
+                </Col>
+              </Row>
+            </Container> 
           </Route>
           <Route exact path="/frei"> 
             <FreieGaerten gaerten= {gaerten} kgvs={kgvs}/>
@@ -135,6 +146,10 @@ function favouriteGarden(gardenid) {
             <Verwaltung userAnzeigen={userAnzeigen} gaerten= {gaerten} kgvs={kgvs}/>
           </Route>
           <Route exact path="/merken"> 
+                <h2>Favourite List</h2>
+              <CopyToClipboard text={favouritedItems.map(el => el.email)}>
+                <button>clipboard all email addresses</button>
+              </CopyToClipboard>
               {favouritedItems.map(verein => <Favourites favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
           </Route>
         </Switch>  
