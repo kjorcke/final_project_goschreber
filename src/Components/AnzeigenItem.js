@@ -46,7 +46,7 @@ function AnzeigenItem() {
                                     <Card.Img className="mb-3" variant="top" src="https://cdn.kiekmo.hamburg/vary/2020/02/listicle-kleingarten-lokstedt-shutterstock_437208574_content-728x410.jpg" />
                                     <Card.Title className="text-danger"><h4>{anzeige.titel}</h4></Card.Title>
                                     <Card.Text className="text-muted mb-3">
-                                        <GeoAltFill className="mr-1" color="green" size={12}/> KGV "{anzeige.kgv.kgvname}", {anzeige.kgv.adresse.strasse}, {anzeige.kgv.adresse.plz} Leipzig
+                                        <GeoAltFill className="mr-1" color="green" size={12}/> KGV "{anzeige.kgv?.kgvname}", {anzeige.kgv?.adresse.strasse}, {anzeige.kgv?.adresse.plz} Leipzig
                                     </Card.Text>
                                     <Card.Subtitle className="mb-3">Beschreibung</Card.Subtitle>    
                                     <Card.Text className="mb-3">{anzeige.beschreibung}</Card.Text>
