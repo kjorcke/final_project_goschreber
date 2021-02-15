@@ -12,6 +12,7 @@ import Verwaltung from './Components/Verwaltung';
 import KgvItem from './Components/KgvItem';
 import Favourites from './Components/Favourites';
 import AnzeigenItem from './Components/AnzeigenItem';
+import FreiItem from './Components/FreiItem';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import useLocalStorage from './useLocalStorage';
@@ -95,9 +96,9 @@ function App() {
   /* ///////////////////// SETTING FAVOURITES IN LOCAL STORAGE /////////////////////*/
   /* ////////////////////////////////////////////////////////////////////////////////*/
 
-  const [favourites, setFavourites] = useLocalStorage('favourite', []);
+ const [favourites, setFavourites] = useLocalStorage('favourite', []);
   
-function favouriteGarden(gardenid) {
+  function favouriteGarden(gardenid) {
 
     console.log(gardenid)
     console.log(favourites.indexOf(gardenid))
@@ -113,11 +114,33 @@ function favouriteGarden(gardenid) {
     }
   }
 
-  const favouritedItems = kgvs.filter(({_id}) => favourites.indexOf(_id) != -1)
-  console.log(favouritedItems)
+    const favouritedItems = kgvs.filter(({_id}) => favourites.indexOf(_id) != -1)
+    console.log(favouritedItems)
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
+
+const [merkFrei, setMerkFrei] = useLocalStorage('merkFreiGarten', []);
+  
+function merkFreiGarten(gartenid) {
+
+  console.log(gartenid)
+  console.log(merkFrei.indexOf(gartenid))
+
+  if (merkFrei.indexOf(gartenid) === -1){
+    setMerkFrei([
+      ...merkFrei,
+      gartenid
+    ])
+  } else {
+    
+    setMerkFrei(favourites.filter(item => item != gartenid))
+  }
+}
+
+  const merkFreiItems = gaerten.filter(({_id}) => merkFrei.indexOf(_id) != -1)
+  console.log(merkFreiItems)
+/*////////////////////////////////////////////////////////////////////////////*/
 
   return (
       <Router>
@@ -126,8 +149,8 @@ function favouriteGarden(gardenid) {
           <Route exact path="/">
             <Container fluid>
               <Row>
-                <Col xs={9}>
-                  <Map kgvs={kgvs}/>
+                <Col xs={8}>
+                  <Map favouritedItems={favouritedItems} favourites={favourites} setFavourites={setFavourites} kgvs={kgvs}/>
                 </Col>
                 <Col>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
@@ -137,8 +160,19 @@ function favouriteGarden(gardenid) {
               </Row>
             </Container> 
           </Route>
-          <Route exact path="/frei"> 
-            <FreieGaerten gaerten= {gaerten} kgvs={kgvs}/>
+          <Route exact path="/frei">
+            <Container fluid>
+              <Row>
+            <Col xs={8}>
+              <FreieGaerten setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} gaerten= {gaerten} kgvs={kgvs}/>
+            </Col>  
+            <Col>
+              <Scrollbars style={{ width: "100%", height: "100%" }}>
+                {gaerten.map(freigarten=> <FreiItem merkFreiItems={merkFreiItems} merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id}/>)}
+              </Scrollbars>
+            </Col>
+            </Row>
+            </Container>
           </Route>
           <Route path="/frei/:id"> 
             <AnzeigenItem />

@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/goschreber-front/static/css/main.189af7f4.chunk.css",
-    "main.js": "/goschreber-front/static/js/main.e3188ee5.chunk.js",
-    "main.js.map": "/goschreber-front/static/js/main.e3188ee5.chunk.js.map",
-    "runtime-main.js": "/goschreber-front/static/js/runtime-main.0762f2af.js",
-    "runtime-main.js.map": "/goschreber-front/static/js/runtime-main.0762f2af.js.map",
+    "main.css": "/goschreber-front/static/css/main.e92e065d.chunk.css",
+    "main.js": "/goschreber-front/static/js/main.48ae0ecd.chunk.js",
+    "main.js.map": "/goschreber-front/static/js/main.48ae0ecd.chunk.js.map",
+    "runtime-main.js": "/goschreber-front/static/js/runtime-main.072585ab.js",
+    "runtime-main.js.map": "/goschreber-front/static/js/runtime-main.072585ab.js.map",
     "static/css/2.b07efd9f.chunk.css": "/goschreber-front/static/css/2.b07efd9f.chunk.css",
-    "static/js/2.4aeca5c2.chunk.js": "/goschreber-front/static/js/2.4aeca5c2.chunk.js",
-    "static/js/2.4aeca5c2.chunk.js.map": "/goschreber-front/static/js/2.4aeca5c2.chunk.js.map",
-    "static/js/3.704685c1.chunk.js": "/goschreber-front/static/js/3.704685c1.chunk.js",
-    "static/js/3.704685c1.chunk.js.map": "/goschreber-front/static/js/3.704685c1.chunk.js.map",
+    "static/js/2.99da91fe.chunk.js": "/goschreber-front/static/js/2.99da91fe.chunk.js",
+    "static/js/2.99da91fe.chunk.js.map": "/goschreber-front/static/js/2.99da91fe.chunk.js.map",
+    "static/js/3.e12984af.chunk.js": "/goschreber-front/static/js/3.e12984af.chunk.js",
+    "static/js/3.e12984af.chunk.js.map": "/goschreber-front/static/js/3.e12984af.chunk.js.map",
     "index.html": "/goschreber-front/index.html",
     "static/css/2.b07efd9f.chunk.css.map": "/goschreber-front/static/css/2.b07efd9f.chunk.css.map",
-    "static/css/main.189af7f4.chunk.css.map": "/goschreber-front/static/css/main.189af7f4.chunk.css.map",
-    "static/js/2.4aeca5c2.chunk.js.LICENSE.txt": "/goschreber-front/static/js/2.4aeca5c2.chunk.js.LICENSE.txt",
+    "static/css/main.e92e065d.chunk.css.map": "/goschreber-front/static/css/main.e92e065d.chunk.css.map",
+    "static/js/2.99da91fe.chunk.js.LICENSE.txt": "/goschreber-front/static/js/2.99da91fe.chunk.js.LICENSE.txt",
     "static/media/carrot.21d529a5.png": "/goschreber-front/static/media/carrot.21d529a5.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.0762f2af.js",
+    "static/js/runtime-main.072585ab.js",
     "static/css/2.b07efd9f.chunk.css",
-    "static/js/2.4aeca5c2.chunk.js",
-    "static/css/main.189af7f4.chunk.css",
-    "static/js/main.e3188ee5.chunk.js"
+    "static/js/2.99da91fe.chunk.js",
+    "static/css/main.e92e065d.chunk.css",
+    "static/js/main.48ae0ecd.chunk.js"
   ]
 }

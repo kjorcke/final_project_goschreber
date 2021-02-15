@@ -1,17 +1,34 @@
-import { divIcon } from "leaflet";
 import React, {useState, useEffect} from "react";
 import {Container, Row, Col, Card, Button} from "react-bootstrap";
-import FreiItem from "./FreiItem";
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import L from "leaflet";
 import  carrot from '../assets/carrot.png';
-import { Scrollbars } from 'react-custom-scrollbars';
-
+import {NavLink} from 'react-router-dom';
+import { GeoAltFill, Heart, HeartFill } from 'react-bootstrap-icons';
 
     
-function FreieGaerten({gaerten}) {
+function FreieGaerten({gaerten, setMerkFrei, merkFrei, merkFreiItems}) {
 
+  
+  function merkFreiGarten(gartenid) {
 
+    console.log(gartenid)
+    console.log(merkFrei.indexOf(gartenid))
+
+    if (merkFrei.indexOf(gartenid) === -1){
+      setMerkFrei([
+        ...merkFrei,
+        gartenid
+      ])
+    } else {
+      
+      setMerkFrei(merkFrei.filter(item => item != gartenid))
+    }
+  }
+
+  const isMerkFrei = () => {
+    return merkFreiItems.find((el) => el._id === gaerten._id) ? true : false
+  }
   
 
     const position = [51.330743159430824, 12.36348580378971]
@@ -25,9 +42,6 @@ function FreieGaerten({gaerten}) {
     });
 
     return (
-        <Container fluid>
-          <Row>
-            <Col xs={8}>
                 <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
                   <TileLayer
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -43,23 +57,28 @@ function FreieGaerten({gaerten}) {
                       ]}
                     >
                       <Popup>
-                        <Card className="mb-1" style={{ width: '15rem' }}>
-                          <Card.Body>
-                              <Card.Title>{garten.kgv.kgvname}</Card.Title>
+                        <Card border="success">
+                          <Card.Body className="mb-1 mt-1"> 
+                              <Card.Text className="mb-1 text-muted"><GeoAltFill className="mr-1" color="green" size={12}/>{garten.kgv.kgvname}</Card.Text>
+                              <Card.Title className="mb-1 text-success"><h4>{garten.titel}</h4></Card.Title>
+                              <Card.Text className="mb-1 mt-1 text-muted text-truncate">{garten.beschreibung}</Card.Text>
+                              <Card.Subtitle className="mb-1 mt-1 text-success"><h5>{garten.preis}€</h5></Card.Subtitle>
+                              <Row >
+                                  <NavLink to={`/frei/${garten._id}`}>
+                                      <Button size="sm" className="mr-2 ml-3" variant="outline-danger">Details</Button>
+                                  </NavLink>
+                                  <Button onClick={() => merkFreiGarten(garten._id)} size="sm" className="mr-2 " variant='outline-danger'>
+                                  {isMerkFrei()? <HeartFill className="mr-2" color="red" size={17}/> : <Heart className="mr-2" color="red" size={17}/>}
+                                  {isMerkFrei() ? 'Entfernen' : 'Merken'}
+                        </Button>
+                                      <Button size="sm" className="mr-2" variant="outline-danger">Teilen</Button>
+                              </Row>
                           </Card.Body>
-                        </Card>
-                      </Popup>
+                      </Card>
+                  </Popup>
                     </Marker>  
                   ))}
                 </MapContainer>
-            </Col>
-            <Col>
-              <Scrollbars style={{ width: "100%", height: "100%" }}>
-                {gaerten.map(freigarten=> <FreiItem freigarten={freigarten} key={freigarten._id}/>)}
-              </Scrollbars>
-            </Col>
-          </Row>
-        </Container>
     )
 }
 
