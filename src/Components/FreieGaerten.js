@@ -26,8 +26,8 @@ function FreieGaerten({gaerten, setMerkFrei, merkFrei, merkFreiItems}) {
     }
   }
 
-  const isMerkFrei = () => {
-    return merkFreiItems.find((el) => el._id === gaerten._id) ? true : false
+  const isMerkFrei = (freiId) => {
+    return merkFreiItems.find((el) => el._id === freiId) ? true : false
   }
   
 
@@ -68,8 +68,8 @@ function FreieGaerten({gaerten, setMerkFrei, merkFrei, merkFreiItems}) {
                                       <Button size="sm" className="mr-2 ml-3" variant="outline-danger">Details</Button>
                                   </NavLink>
                                   <Button onClick={() => merkFreiGarten(garten._id)} size="sm" className="mr-2 " variant='outline-danger'>
-                                  {isMerkFrei()? <HeartFill className="mr-2" color="red" size={17}/> : <Heart className="mr-2" color="red" size={17}/>}
-                                  {isMerkFrei() ? 'Entfernen' : 'Merken'}
+                                  {isMerkFrei(garten._id)? <HeartFill className="mr-2" color="red" size={17}/> : <Heart className="mr-2" color="red" size={17}/>}
+                                  {isMerkFrei(garten._id)? 'Entfernen' : 'Merken'}
                         </Button>
                                       <Button size="sm" className="mr-2" variant="outline-danger">Teilen</Button>
                               </Row>

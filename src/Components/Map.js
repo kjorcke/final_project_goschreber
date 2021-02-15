@@ -32,7 +32,10 @@ function Map({kgvs, favourites, favouritedItems, setFavourites}) {
     const isFavourite = (gartenid) => {
       return favouritedItems.find((el) => el._id === gartenid) ? true : false
     }
-
+    
+    const web = (website) => {
+      return website ? true : false
+    }
 
   const position = [51.330743159430824, 12.36348580378971]
   const carrotIcon = L.icon({

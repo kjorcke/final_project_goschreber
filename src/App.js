@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Map from "./Components/Map";
 import Header from "./Components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row,} from 'react-bootstrap';
+import { Container, Col, Row, Button} from 'react-bootstrap';
 import Layout from './Components/Layout';
 import FreieGaerten from './Components/FreieGaerten';
 import Inserieren from './Components/Inserieren';
@@ -13,6 +13,9 @@ import KgvItem from './Components/KgvItem';
 import Favourites from './Components/Favourites';
 import AnzeigenItem from './Components/AnzeigenItem';
 import FreiItem from './Components/FreiItem';
+import FavoritenMap from './Components/FavoritenMap';
+import FavoritenFreiItem from './Components/FavoritenFreiItem';
+import FavoritenVereinItem from './Components/FavoritenVereinItem';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import useLocalStorage from './useLocalStorage';
@@ -134,7 +137,7 @@ function merkFreiGarten(gartenid) {
     ])
   } else {
     
-    setMerkFrei(favourites.filter(item => item != gartenid))
+    setMerkFrei(merkFrei.filter(item => item != gartenid))
   }
 }
 
@@ -183,12 +186,27 @@ function merkFreiGarten(gartenid) {
           <Route exact path="/verwalten"> 
             <Verwaltung userAnzeigen={userAnzeigen} gaerten= {gaerten} kgvs={kgvs}/>
           </Route>
-          <Route exact path="/merken"> 
-                <h2>Favourite List</h2>
-              <CopyToClipboard text={favouritedItems.map(el => el.email)}>
-                <button>clipboard all email addresses</button>
-              </CopyToClipboard>
-              {favouritedItems.map(verein => <Favourites favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
+          <Route exact path="/merken">
+            <Container fluid>
+              <Row>
+                <Col xs={6}>
+                 <FavoritenMap favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>
+                </Col>
+                <Col>
+                  <CopyToClipboard text={favouritedItems.map(el => el.email)}>
+                   <Button>clipboard all email addresses</Button>
+                  </CopyToClipboard>
+                  <Scrollbars style={{ width: "100%", height: "100%" }}>
+                  {favouritedItems.map(verein => <FavoritenVereinItem favClick={() => favouriteGarden(verein._id)} verein={verein} favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} key={verein._id}/>)}
+                  </Scrollbars>
+                </Col>
+                <Col>
+                  <Scrollbars style={{ width: "100%", height: "100%" }}>
+                    {merkFreiItems.map(freigarten => <FavoritenFreiItem merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>)}
+                  </Scrollbars>
+                </Col>
+              </Row>
+              </Container> 
           </Route>
         </Switch>  
       </Router>
