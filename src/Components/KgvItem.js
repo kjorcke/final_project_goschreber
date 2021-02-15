@@ -11,7 +11,9 @@ function KgvItem({favouritedItems, verein, favClick}) {
   const [merken, setMerken] = useState(false)  
   const web = verein.web
 
-  const heart = favouritedItems.filter((el) => el._id === verein._id)
+  const isFavourite = () => {
+    return favouritedItems.find((el) => el._id === verein._id) ? true : false
+  }
 
     return (
         <Card border="success" className="mb-1" >
@@ -22,7 +24,9 @@ function KgvItem({favouritedItems, verein, favClick}) {
                 {web && <Card.Subtitle href={verein.web} className="mb-3 text-muted"><Globe2 className="mr-2" color="green" size={17} /><a className="mb-3 text-muted" href={verein.web}>{verein.web}</a></Card.Subtitle>}
                 <Container className="justify-content-center">
                     <Row >
-                        <Button onClick={favClick} size="sm" className="m-1 " variant="outline-danger">Merken</Button>
+                        <Button onClick={favClick} size="sm" className="m-1 " variant={isFavourite() ? 'danger' : 'outline-danger'}>
+                            {isFavourite() ? 'Entfernen' : 'Merken'}
+                        </Button>
                         <Button size="sm" className="m-1" variant="outline-danger">Teilen</Button>
                     </Row>
                 </Container>

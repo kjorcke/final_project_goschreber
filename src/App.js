@@ -11,6 +11,7 @@ import Inserieren from './Components/Inserieren';
 import Verwaltung from './Components/Verwaltung';
 import KgvItem from './Components/KgvItem';
 import Favourites from './Components/Favourites';
+import AnzeigenItem from './Components/AnzeigenItem';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import useLocalStorage from './useLocalStorage';
@@ -138,6 +139,9 @@ function favouriteGarden(gardenid) {
           </Route>
           <Route exact path="/frei"> 
             <FreieGaerten gaerten= {gaerten} kgvs={kgvs}/>
+          </Route>
+          <Route path="/frei/:id"> 
+            <AnzeigenItem />
           </Route>
           <Route exact path="/inserieren"> 
             <Inserieren handleSubmit={handleSubmit} anzeige={anzeige} setAnzeige={setAnzeige} gaerten= {gaerten} kgvs={kgvs}/>

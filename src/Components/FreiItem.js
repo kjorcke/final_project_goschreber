@@ -1,13 +1,15 @@
 import React from 'react';
 import {Container, Row, Card, Button} from "react-bootstrap";
 import { GeoAltFill } from 'react-bootstrap-icons';
+import {NavLink} from 'react-router-dom';
 
 
 
 function FreiItem({freigarten}) {
     return (
-        <Container>
-            <Row>
+        <NavLink to={`/frei/${freigarten._id}`}>
+            <Container>
+                <Row>
                 <Card border="success" className="mb-1">
                     <Card.Body className="m-1">
                         <Row>
@@ -30,6 +32,8 @@ function FreiItem({freigarten}) {
                 </Card>
             </Row>
         </Container>
+        </NavLink>
+        
       
     )
 }

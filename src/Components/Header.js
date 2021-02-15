@@ -10,7 +10,7 @@ function Header() {
             <Row>
                 <Col>
             <Navbar expand="xl">
-            <Navbar.Brand href="#">Go Schreber</Navbar.Brand>
+            <Navbar.Brand href="/"><h4 className="text-danger"><strong>GO SCHREBER</strong></h4></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav" >
                 <Nav>
