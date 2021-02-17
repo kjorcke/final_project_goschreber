@@ -31,7 +31,11 @@ function FavoritenMap({favouritedItems, merkFreiItems, setFavourites, favourites
 
       const web = (website) => {
         return website ? true : false
-      } 
+      }
+  
+      const email = (emailadresse) => {
+        return emailadresse ? true : false
+      }
  /*77777777777777777777777777777777777777777777777777777777777777777777777 */
       function merkFreiGarten(gartenid) {
 
@@ -81,22 +85,23 @@ function FavoritenMap({favouritedItems, merkFreiItems, setFavourites, favourites
             ]}
           >
             <Popup >
-            <Card border="success" className="mb-1" >
-          <Card.Body >
-          <Card.Title>{verein.kgvname}</Card.Title>
-          <Card.Text className="mb-2 text-muted"><GeoAltFill className="mr-2"color="green" size={15}/>{verein.adresse.strasse}, {verein.adresse.plz} {verein.adresse.stadt}</Card.Text>
-          <Card.Text className="mb-2 text-muted"><Envelope className="mr-2" color="green" size={15}/>{verein.email}</Card.Text>
-          {web(verein.web) && <Card.Text href={verein.web} className="mb-3 text-muted"><Globe2 className="mr-2" color="green" size={15} /><a className="mb-3 text-muted" href={verein.web}>{verein.web}</a></Card.Text>}
-          <Container className="justify-content-center">
-              <Row >
-                  <Button onClick={() => favouriteGarden(verein._id)} size="sm" className="m-1 " variant='outline-danger'>
-                  {isFavourite(verein._id) ? 'Entfernen' : 'Merken'}
-                  </Button>
-                  <Button size="sm" className="m-1" variant="outline-danger">Teilen</Button>
-              </Row>
-          </Container>
-      </Card.Body>
-  </Card>
+            <Card border="success" style={{ width: '19rem' }} >
+            <Card.Body>
+                <Card.Title>{verein.kgvname}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted"><GeoAltFill className="mr-2"color="green" size={17}/>{verein.adresse.strasse}, {verein.adresse.plz} {verein.adresse.stadt}</Card.Subtitle>
+                {email(verein.email) && <Card.Subtitle className="mb-2 text-muted"><Envelope className="mr-2" color="green" size={17}/>{verein.email}</Card.Subtitle>}
+                    {web(verein.web) && <Card.Subtitle href={verein.web} className="mb-3 text-muted"><Globe2 className="mr-2" color="green" size={17} /><a className="mb-3 text-muted" href={verein.web}>{verein.web}</a></Card.Subtitle>}
+                    <Container className="justify-content-center">
+                        <Row >
+                            <Button onClick={() => favouriteGarden(verein._id)} size="sm" className="m-1 " variant='outline-danger'>
+                                {isFavourite(verein._id)? <HeartFill className="mr-2" color="red" size={17}/> : <Heart className="mr-2" color="red" size={17}/>}
+                                {isFavourite(verein._id)? 'Entfernen' : 'Merken'}
+                            </Button>
+                            <Button size="sm" className="m-1" variant="outline-danger">Teilen</Button>
+                        </Row>
+                    </Container>
+                </Card.Body>
+              </Card>
             </Popup>
           </Marker>  
         ))}

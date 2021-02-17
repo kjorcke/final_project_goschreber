@@ -11,33 +11,33 @@ function Header() {
             <Row>
                 <Col>
             <Navbar expand="sm">
-          {/*   <Navbar.Brand href="#home">
+        
                 <img
-                    src="../assets/carrotbrand.svg"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
+                    src={carrot}
+                    width="35"
+                    height="35"
+                    /* className="d-inline-block" */
                     alt="React Bootstrap logo"
                 />
-            </Navbar.Brand> */}    
-            <Navbar.Brand href="/"><h4 className="text-danger"><strong>GO SCHREBER</strong></h4></Navbar.Brand>
+            
+            <h4 className="text-danger mt-2"><strong>GO SCHREBER</strong></h4>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav" >
                 <Nav>
                     <Nav.Item  className="ml-6">
-                        <NavLink to='/'><Button className="mr-3" variant="success">Vereine</Button></NavLink>
+                        <Nav.Link href='/'><Button className="mr-1" variant="success">Vereine</Button></Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <NavLink to="/frei"><Button className="mr-3" variant="success">Freie Gärten</Button></NavLink>
+                        <Nav.Link href="/frei"><Button className="mr-1" variant="success">Freie Gärten</Button></Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <NavLink to="/inserieren"><Button className="mr-3" variant="success">Anzeige aufgeben</Button></NavLink>
+                        <Nav.Link href="/inserieren"><Button className="mr-1" variant="success">Anzeige aufgeben</Button></Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <NavLink to="/verwalten"><Button className="mr-3" variant="success">Anzeigen verwalten</Button></NavLink>
+                        <Nav.Link href="/verwalten"><Button className="mr-1" variant="success">Anzeigen verwalten</Button></Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <NavLink to="/merken"><Button variant="success">Merkliste</Button></NavLink>
+                        <Nav.Link href="/merken"><Button variant="success">Merkliste</Button></Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Navbar.Collapse>

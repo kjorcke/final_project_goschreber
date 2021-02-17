@@ -27,7 +27,7 @@ function VerwaltungsItem({eigAnzeige, setOwnAnzeige, ownAnzeige}) {
         <Row>
             <Col>
             {deleted?
-            <Card border="success">
+            <Card className="mb-1" border="success">
                 <Card.Body className="mt-1">
                         <Card.Title /* className="text-danger" */><h4>Anzeige gelöscht</h4></Card.Title>
                 </Card.Body>

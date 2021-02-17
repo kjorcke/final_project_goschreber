@@ -27,7 +27,7 @@ function KgvItem({favouritedItems, verein, favClick}) {
                     <Row >
                         <Button onClick={favClick} size="sm" className="m-1 " variant='outline-danger'>
                             {isFavourite()? <HeartFill className="mr-2" color="red" size={17}/> : <Heart className="mr-2" color="red" size={17}/>}
-                            {isFavourite() ? 'Entfernen' : 'Merken'}
+                            {isFavourite()? 'Entfernen' : 'Merken'}
                         </Button>
                         <Button size="sm" className="m-1" variant="outline-danger">Teilen</Button>
                     </Row>

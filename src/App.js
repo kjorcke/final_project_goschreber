@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Button, Image} from 'react-bootstrap';
 import FreieGaerten from './Components/FreieGaerten';
 import Inserieren from './Components/Inserieren';
-import Verwaltung from './Components/Verwaltung';
 import KgvItem from './Components/KgvItem';
 import Favourites from './Components/Favourites';
 import AnzeigenItem from './Components/AnzeigenItem';
@@ -203,22 +202,22 @@ function merkFreiGarten(gartenid) {
           </Route>
           <Route exact path="/merken">
             <Container fluid>
-              <Row className="mt-2">
+              <Row>
                 <Col>
-                  <h4 className="text-center">Merkliste Vereine</h4>
-                  {/* <CopyToClipboard text={favouritedItems.map(el => el.email)}>
-                   <Button>clipboard all email addresses</Button>
-                  </CopyToClipboard> */}
+                  <h4 className="text-center mb-3">Merkliste Vereine</h4>
+                  <CopyToClipboard text={favouritedItems.map(el => el.email)}>
+                   <Button className="mb-2"variant="outline-success">Alle Email-Adressen in die Zwischenablage kopieren</Button>
+                  </CopyToClipboard>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
                   {favouritedItems.map(verein => <FavoritenVereinItem favClick={() => favouriteGarden(verein._id)} verein={verein} favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} key={verein._id}/>)}
                   </Scrollbars>
                 </Col>
                 <Col xs={6}>
-                  <h4 style={{color:"white" }}>g</h4>
+                  {/* <h4 style={{color:"white" }}>g</h4> */}
                  <FavoritenMap favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>
                 </Col>
                 <Col>
-                  <h4 className="text-center">Merkliste Gärten</h4>
+                  <h4 className="text-center mb-3">Merkliste Gärten</h4>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
                     {merkFreiItems.map(freigarten => <FavoritenFreiItem merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>)}
                   </Scrollbars>
