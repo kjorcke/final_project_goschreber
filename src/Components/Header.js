@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Col, Row, Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import  carrot from '../assets/carrot.png';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
 
@@ -9,7 +10,7 @@ function Header() {
         <Container fluid>
             <Row>
                 <Col>
-            <Navbar expand="xl">
+            <Navbar expand="sm">
           {/*   <Navbar.Brand href="#home">
                 <img
                     src="../assets/carrotbrand.svg"
@@ -24,19 +25,19 @@ function Header() {
             <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav" >
                 <Nav>
                     <Nav.Item  className="ml-6">
-                        <Nav.Link eventKey="home" href="/"><Button variant="success">Vereine</Button></Nav.Link>
+                        <NavLink to='/'><Button className="mr-3" variant="success">Vereine</Button></NavLink>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <Nav.Link eventKey="frei" href="/frei"><Button variant="success">Freie Gärten</Button></Nav.Link>
+                        <NavLink to="/frei"><Button className="mr-3" variant="success">Freie Gärten</Button></NavLink>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <Nav.Link href="/inserieren"><Button variant="success">Anzeige aufgeben</Button></Nav.Link>
+                        <NavLink to="/inserieren"><Button className="mr-3" variant="success">Anzeige aufgeben</Button></NavLink>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <Nav.Link href="/verwalten"><Button variant="success">Anzeigen verwalten</Button></Nav.Link>
+                        <NavLink to="/verwalten"><Button className="mr-3" variant="success">Anzeigen verwalten</Button></NavLink>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <Nav.Link href="/merken"><Button variant="success">Merkliste</Button></Nav.Link>
+                        <NavLink to="/merken"><Button variant="success">Merkliste</Button></NavLink>
                     </Nav.Item>
                 </Nav>
             </Navbar.Collapse>
