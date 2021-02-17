@@ -182,7 +182,7 @@ function merkFreiGarten(gartenid) {
             </Container>
           </Route>
           <Route path="/frei/:id"> 
-            <AnzeigenItem />
+            <AnzeigenItem setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} />
           </Route>
           <Route exact path="/inserieren"> 
             <Inserieren handleSubmit={handleSubmit} anzeige={anzeige} setAnzeige={setAnzeige} gaerten= {gaerten} kgvs={kgvs}/>
@@ -198,7 +198,6 @@ function merkFreiGarten(gartenid) {
             </Col>
               </Row>
             </Container>
-           
           </Route>
           <Route exact path="/merken">
             <Container fluid>
@@ -218,6 +217,9 @@ function merkFreiGarten(gartenid) {
                 </Col>
                 <Col>
                   <h4 className="text-center mb-3">Merkliste Gärten</h4>
+                  <CopyToClipboard text={merkFreiItems.map(el => el.email)}>
+                   <Button className="mb-2"variant="outline-success">Alle Email-Adressen in die Zwischenablage kopieren</Button>
+                  </CopyToClipboard>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
                     {merkFreiItems.map(freigarten => <FavoritenFreiItem merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>)}
                   </Scrollbars>

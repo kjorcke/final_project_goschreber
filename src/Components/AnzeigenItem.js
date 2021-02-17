@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Container, Col, Row, Card, Button} from "react-bootstrap";
-import { GeoAltFill, PersonCircle, Telephone, Envelope } from 'react-bootstrap-icons';
+import { GeoAltFill, PersonCircle, Telephone, Envelope, Heart, HeartFill } from 'react-bootstrap-icons';
 
 
 
 
-function AnzeigenItem() {
+function AnzeigenItem({setMerkFrei, merkFrei, merkFreiItems}) {
 
     const {id} = useParams ();
     const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +36,23 @@ function AnzeigenItem() {
       useEffect(loadAnzeigeById, []);
 
         console.log(anzeige)
+    
+    function merkFreiGarten(gartenid) {
+    
+        if (merkFrei.indexOf(gartenid) === -1){
+            setMerkFrei([
+            ...merkFrei,
+            gartenid
+            ])
+        } else {
+            
+            setMerkFrei(merkFrei.filter(item => item != gartenid))
+        }
+        }    
+      
+    const isMerkFrei = () => {
+        return merkFreiItems.find((el) => el._id === anzeige._id) ? true : false
+        }
 
     return (
             <Container fluid>
@@ -86,7 +103,10 @@ function AnzeigenItem() {
                             <Row>
                                 <Card border="success" style={{ width: '18rem' }} >
                                  <Card.Body>
-                                    <Button className="mr-1" variant="outline-danger" block>Merken</Button>
+                                 <Button onClick={() => merkFreiGarten(anzeige._id)} className="mr-2 " variant='outline-danger' block>
+                                    {isMerkFrei()? <HeartFill className="mr-2" color="red" size={18}/> : <Heart className="mr-2" color="red" size={18}/>}
+                                    {isMerkFrei()? 'Entfernen' : 'Merken'}
+                                </Button>
                                     <Button className="mr-1" variant="outline-danger" block>Teilen</Button>      
                                     <Card.Subtitle className="mt-3 mb-2"><PersonCircle className="mr-3"color="green" size={17}/>{anzeige.name}</Card.Subtitle>
                                     <Card.Subtitle className="mb-2"><Envelope className="mr-3" color="green" size={17}/>{anzeige.email}</Card.Subtitle>
