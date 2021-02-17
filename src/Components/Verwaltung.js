@@ -1,10 +1,14 @@
 import React from 'react';
-import VerwaltungsItem from "./VerwaltungsItem"
+import VerwaltungsItem from "./VerwaltungsItem";
+import axios from 'axios';
 
-function Verwaltung({userAnzeigen}) {
+
+function Verwaltung({userAnzeigen, ownAnzeige, setOwnAnzeige}) {
+
+   
     return (
         <div>
-             {userAnzeigen.map(anzeige => <VerwaltungsItem anzeige={anzeige} key={anzeige._id}/>)}
+             
         </div>
     )
 }

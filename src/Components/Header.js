@@ -30,8 +30,8 @@ function Header() {
                         <Nav.Link href="/merken"><Button variant="success">Merkliste</Button></Nav.Link>
                     </Nav.Item>
                 </Nav>
-        </Navbar.Collapse>
-    </Navbar>
+            </Navbar.Collapse>
+        </Navbar>
                 </Col>
             </Row>
         </Container>

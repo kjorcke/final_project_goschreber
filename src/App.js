@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from "react";
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Map from "./Components/Map";
 import Header from "./Components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Button} from 'react-bootstrap';
-import Layout from './Components/Layout';
 import FreieGaerten from './Components/FreieGaerten';
 import Inserieren from './Components/Inserieren';
 import Verwaltung from './Components/Verwaltung';
@@ -16,11 +15,14 @@ import FreiItem from './Components/FreiItem';
 import FavoritenMap from './Components/FavoritenMap';
 import FavoritenFreiItem from './Components/FavoritenFreiItem';
 import FavoritenVereinItem from './Components/FavoritenVereinItem';
+import VerwaltungsItem from './Components/VerwaltungsItem';
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
 import useLocalStorage from './useLocalStorage';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { useHistory } from "react-router-dom";
+
+
 
 function App() {
   
@@ -30,8 +32,9 @@ function App() {
   const [gaerten, setGaerten] = useState([]);
   const [anzeige, setAnzeige] = useState({titel:'', beschreibung:'', kgv:'', pachtkosten:'', preis:'', verfügbar:'', gartemqm:'', name:'', email:'', telefon:''})
   const [ownAnzeige, setOwnAnzeige] = useLocalStorage('anzeigen', []);
+  const [favourites, setFavourites] = useLocalStorage('favourite', []);
+
   const history = useHistory();
-  
 
   const loadKgvs = (searchQuery) => {
     const API_URL = "https://goschreber.herokuapp.com"
@@ -77,7 +80,8 @@ function App() {
 
       useEffect(loadGaerten, []);
 /* //////////////////////////// ANZEIGEN IN LOCAL STORAGE///////////////////////////////////// */
-  function handleSubmit(e) {
+
+function handleSubmit(e) { 
     e.preventDefault();
     axios
         .post("https://goschreber.herokuapp.com/anzeigens", anzeige)
@@ -87,8 +91,7 @@ function App() {
                 ...ownAnzeige,
                 _id
             ]);
-            
-            /* history.push('/frei') */
+            history.push(`frei/${_id}`);
         })  
   }
   const userAnzeigen = gaerten.filter(({_id}) => ownAnzeige.indexOf(_id) != -1)
@@ -99,7 +102,7 @@ function App() {
   /* ///////////////////// SETTING FAVOURITES IN LOCAL STORAGE /////////////////////*/
   /* ////////////////////////////////////////////////////////////////////////////////*/
 
- const [favourites, setFavourites] = useLocalStorage('favourite', []);
+
   
   function favouriteGarden(gardenid) {
 
@@ -145,8 +148,10 @@ function merkFreiGarten(gartenid) {
   console.log(merkFreiItems)
 /*////////////////////////////////////////////////////////////////////////////*/
 
+
+
   return (
-      <Router>
+      <>
         <Header />
         <Switch>
           <Route exact path="/">
@@ -167,7 +172,7 @@ function merkFreiGarten(gartenid) {
             <Container fluid>
               <Row>
             <Col xs={8}>
-              <FreieGaerten setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} gaerten= {gaerten} kgvs={kgvs}/>
+              <FreieGaerten ownAnzeige={ownAnzeige} setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} gaerten= {gaerten} kgvs={kgvs}/>
             </Col>  
             <Col>
               <Scrollbars style={{ width: "100%", height: "100%" }}>
@@ -183,22 +188,22 @@ function merkFreiGarten(gartenid) {
           <Route exact path="/inserieren"> 
             <Inserieren handleSubmit={handleSubmit} anzeige={anzeige} setAnzeige={setAnzeige} gaerten= {gaerten} kgvs={kgvs}/>
           </Route>
-          <Route exact path="/verwalten"> 
-            <Verwaltung userAnzeigen={userAnzeigen} gaerten= {gaerten} kgvs={kgvs}/>
+          <Route exact path="/verwalten">
+            {userAnzeigen.map(eigAnzeige => <VerwaltungsItem ownAnzeige={ownAnzeige} setOwnAnzeige={setOwnAnzeige} eigAnzeige={eigAnzeige} key={eigAnzeige._id}/>)} 
           </Route>
           <Route exact path="/merken">
             <Container fluid>
               <Row>
-                <Col xs={6}>
-                 <FavoritenMap favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>
-                </Col>
                 <Col>
-                  <CopyToClipboard text={favouritedItems.map(el => el.email)}>
+                  {/* <CopyToClipboard text={favouritedItems.map(el => el.email)}>
                    <Button>clipboard all email addresses</Button>
-                  </CopyToClipboard>
+                  </CopyToClipboard> */}
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
                   {favouritedItems.map(verein => <FavoritenVereinItem favClick={() => favouriteGarden(verein._id)} verein={verein} favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} key={verein._id}/>)}
                   </Scrollbars>
+                </Col>
+                <Col xs={6}>
+                 <FavoritenMap favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>
                 </Col>
                 <Col>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
@@ -209,7 +214,7 @@ function merkFreiGarten(gartenid) {
               </Container> 
           </Route>
         </Switch>  
-      </Router>
+      </>
   )
 }
 

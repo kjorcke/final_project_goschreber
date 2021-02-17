@@ -106,7 +106,6 @@ return (
                                                 <Button variant="success" type="submit">
                                                 Anzeige aufgeben
                                                 </Button>
-                                                
                                 </Form>
                             </Card>
                     </Col>

@@ -7,13 +7,14 @@ import {NavLink} from 'react-router-dom';
 import { GeoAltFill, Heart, HeartFill } from 'react-bootstrap-icons';
 
     
-function FreieGaerten({gaerten, setMerkFrei, merkFrei, merkFreiItems}) {
+function FreieGaerten({gaerten, ownAnzeige, setMerkFrei, merkFrei, merkFreiItems}) {
 
   
   function merkFreiGarten(gartenid) {
 
     console.log(gartenid)
     console.log(merkFrei.indexOf(gartenid))
+    console.log(ownAnzeige)
 
     if (merkFrei.indexOf(gartenid) === -1){
       setMerkFrei([
