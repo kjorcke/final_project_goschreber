@@ -51,26 +51,46 @@ function AnzeigenItem() {
                                     <Card.Subtitle className="mb-3">Beschreibung</Card.Subtitle>    
                                     <Card.Text className="mb-3">{anzeige.beschreibung}</Card.Text>
                                     <Card.Subtitle className="mb-2">Details</Card.Subtitle>
-                                    <Card.Text className="mb-1">Preis:{anzeige.preis}€</Card.Text>
-                                    <Card.Text className="mb-1">Gartengröße: {anzeige.gartenqm}qm</Card.Text>
-                                    <Card.Text className="mb-1">Jährliche Pachtkosten: {anzeige.pachtkosten}€</Card.Text>
-                                    <Card.Text className="mb-1">Verfügbar ab: {anzeige.verfügbar}</Card.Text>
+                                    <Row>
+                                        <Col xs={4}>
+                                            <Card.Text className="mb-1 text-muted">Preis:</Card.Text>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <Card.Text className="mb-1">{anzeige.preis}€</Card.Text>
+                                        </Col>
+                                        <Col xs={4}>
+                                            <Card.Text className="mb-1 text-muted">Gartengröße:</Card.Text>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <Card.Text className="mb-1">{anzeige.gartenqm}qm</Card.Text>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={4}>
+                                            <Card.Text className="mb-1 text-muted">Jährliche Pachtkosten:</Card.Text>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <Card.Text className="mb-1">{anzeige.pachtkosten}€</Card.Text>
+                                        </Col>
+                                        <Col xs={4}>
+                                            <Card.Text className="mb-1 text-muted">Verfügbar ab:</Card.Text>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <Card.Text className="mb-1">{anzeige.verfügbar}</Card.Text>
+                                        </Col>
+                                    </Row>
                             </Card.Body>
                         </Card>
-                    </Col>
+                            </Col>
                        <Col xs={3}>
-                            <Row className="mb-1">
-                                <Button className="mr-1" variant="outline-danger" block>Merken</Button>
-                            </Row>
-                            <Row className="mb-1">
-                                <Button className="mr-1" variant="outline-danger" block>Teilen</Button> 
-                            </Row>
                             <Row>
-                                <Card border="success" className="mb-1" >
-                                 <Card.Body >
-                                    <Card.Subtitle className="mb-2"><PersonCircle className="mr-2"color="green" size={17}/>{anzeige.name}</Card.Subtitle>
-                                    <Card.Subtitle className="mb-2"><Envelope className="mr-2" color="green" size={17}/>{anzeige.email}</Card.Subtitle>
-                                    <Card.Subtitle className="mb-2"><Telephone className="mr-2" color="green" size={17}/>{anzeige.telefon}</Card.Subtitle>
+                                <Card border="success" style={{ width: '18rem' }} >
+                                 <Card.Body>
+                                    <Button className="mr-1" variant="outline-danger" block>Merken</Button>
+                                    <Button className="mr-1" variant="outline-danger" block>Teilen</Button>      
+                                    <Card.Subtitle className="mt-3 mb-2"><PersonCircle className="mr-3"color="green" size={17}/>{anzeige.name}</Card.Subtitle>
+                                    <Card.Subtitle className="mb-2"><Envelope className="mr-3" color="green" size={17}/>{anzeige.email}</Card.Subtitle>
+                                    <Card.Subtitle className="mb-2"><Telephone className="mr-3" color="green" size={17}/>{anzeige.telefon}</Card.Subtitle>
                                  </Card.Body>
                                 </Card>
                             </Row>            

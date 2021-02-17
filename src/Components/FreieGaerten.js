@@ -58,24 +58,24 @@ function FreieGaerten({gaerten, ownAnzeige, setMerkFrei, merkFrei, merkFreiItems
                       ]}
                     >
                       <Popup>
-                        <Card border="success">
-                          <Card.Body className="mb-1 mt-1"> 
-                              <Card.Text className="mb-1 text-muted"><GeoAltFill className="mr-1" color="green" size={12}/>{garten.kgv.kgvname}</Card.Text>
-                              <Card.Title className="mb-1 text-success"><h4>{garten.titel}</h4></Card.Title>
-                              <Card.Text className="mb-1 mt-1 text-muted text-truncate">{garten.beschreibung}</Card.Text>
-                              <Card.Subtitle className="mb-1 mt-1 text-success"><h5>{garten.preis}€</h5></Card.Subtitle>
-                              <Row >
-                                  <NavLink to={`/frei/${garten._id}`}>
-                                      <Button size="sm" className="mr-2 ml-3" variant="outline-danger">Details</Button>
-                                  </NavLink>
-                                  <Button onClick={() => merkFreiGarten(garten._id)} size="sm" className="mr-2 " variant='outline-danger'>
-                                  {isMerkFrei(garten._id)? <HeartFill className="mr-2" color="red" size={17}/> : <Heart className="mr-2" color="red" size={17}/>}
-                                  {isMerkFrei(garten._id)? 'Entfernen' : 'Merken'}
-                        </Button>
-                                      <Button size="sm" className="mr-2" variant="outline-danger">Teilen</Button>
-                              </Row>
-                          </Card.Body>
-                      </Card>
+                          <Card border="success" style={{ width: '19rem' }}>
+                            <Card.Body className="mb-1"> 
+                                <Card.Text className="mb-1 text-muted"><GeoAltFill className="mr-1" color="green" size={12}/>{garten.kgv.kgvname}</Card.Text>
+                                <Card.Title className="mb-1 text-success"><h4>{garten.titel}</h4></Card.Title>
+                                <Card.Text className="mb-1 mt-1 text-muted text-truncate">{garten.beschreibung}</Card.Text>
+                                <Card.Subtitle className="mb-1 mt-1 text-success"><h5>{garten.preis}€</h5></Card.Subtitle>
+                                <Row >
+                                    <NavLink to={`/frei/${garten._id}`}>
+                                        <Button size="sm" className="mr-2 ml-3" variant="outline-danger">Details</Button>
+                                    </NavLink>
+                                    <Button onClick={() => merkFreiGarten(garten._id)} size="sm" className="mr-2 " variant='outline-danger'>
+                                    {isMerkFrei(garten._id)? <HeartFill className="mr-2" color="red" size={17}/> : <Heart className="mr-2" color="red" size={17}/>}
+                                    {isMerkFrei(garten._id)? 'Entfernen' : 'Merken'}
+                          </Button>
+                                        <Button size="sm" className="mr-2" variant="outline-danger">Teilen</Button>
+                                </Row>
+                            </Card.Body>
+                        </Card>
                   </Popup>
                     </Marker>  
                   ))}

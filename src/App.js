@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Map from "./Components/Map";
 import Header from "./Components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Button} from 'react-bootstrap';
+import { Container, Col, Row, Button, Image} from 'react-bootstrap';
 import FreieGaerten from './Components/FreieGaerten';
 import Inserieren from './Components/Inserieren';
 import Verwaltung from './Components/Verwaltung';
@@ -189,12 +189,23 @@ function merkFreiGarten(gartenid) {
             <Inserieren handleSubmit={handleSubmit} anzeige={anzeige} setAnzeige={setAnzeige} gaerten= {gaerten} kgvs={kgvs}/>
           </Route>
           <Route exact path="/verwalten">
-            {userAnzeigen.map(eigAnzeige => <VerwaltungsItem ownAnzeige={ownAnzeige} setOwnAnzeige={setOwnAnzeige} eigAnzeige={eigAnzeige} key={eigAnzeige._id}/>)} 
+            <Container className="mt-4"fluid>
+              <Row>
+              <Col xs={8}>
+                <Image src="https://www.leipzig-lese.de/media_leipzig_lese/schreber_kopfbild_dsc04811.jpg" fluid rounded/>
+            </Col>
+            <Col>
+              {userAnzeigen.map(eigAnzeige => <VerwaltungsItem ownAnzeige={ownAnzeige} setOwnAnzeige={setOwnAnzeige} eigAnzeige={eigAnzeige} key={eigAnzeige._id}/>)} 
+            </Col>
+              </Row>
+            </Container>
+           
           </Route>
           <Route exact path="/merken">
             <Container fluid>
-              <Row>
+              <Row className="mt-2">
                 <Col>
+                  <h4 className="text-center">Merkliste Vereine</h4>
                   {/* <CopyToClipboard text={favouritedItems.map(el => el.email)}>
                    <Button>clipboard all email addresses</Button>
                   </CopyToClipboard> */}
@@ -203,9 +214,11 @@ function merkFreiGarten(gartenid) {
                   </Scrollbars>
                 </Col>
                 <Col xs={6}>
+                  <h4 style={{color:"white" }}>g</h4>
                  <FavoritenMap favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>
                 </Col>
                 <Col>
+                  <h4 className="text-center">Merkliste Gärten</h4>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
                     {merkFreiItems.map(freigarten => <FavoritenFreiItem merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>)}
                   </Scrollbars>

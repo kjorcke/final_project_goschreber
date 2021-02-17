@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container, Col, Row, Card, Button} from "react-bootstrap";
+import {Container, Col, Row, Card, Button, Image} from "react-bootstrap";
 import { GeoAltFill, Heart, HeartFill } from 'react-bootstrap-icons';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
@@ -23,15 +23,13 @@ function VerwaltungsItem({eigAnzeige, setOwnAnzeige, ownAnzeige}) {
     
 
     return (
-        <Container fluid>
-        <Row className="justify-content-md-center mt-5">
-            <Col xs={4}>
-            {deleted ?
-            <Card border="success" className="mb-1">
-                <Card.Body className="m-1">
-                    <Row>
-                        <Card.Title>Anzeige gelöscht</Card.Title>
-                    </Row>
+        <Container>
+        <Row>
+            <Col>
+            {deleted?
+            <Card border="success">
+                <Card.Body className="mt-1">
+                        <Card.Title /* className="text-danger" */><h4>Anzeige gelöscht</h4></Card.Title>
                 </Card.Body>
             </Card>
                :      
@@ -49,12 +47,11 @@ function VerwaltungsItem({eigAnzeige, setOwnAnzeige, ownAnzeige}) {
                     <Row>
                         <h5 className="text-success"><strong>{eigAnzeige.preis}€</strong></h5>
                     </Row>
-
                     <Row>
-                        <Button onClick={handleDelete} size="sm" className="mr-4" variant="success">Löschen</Button>
+                        <Button onClick={handleDelete} size="sm" className="mr-2" variant="danger">Löschen</Button>
                         <Button size="sm" className="mr-2" variant="success">Bearbeiten</Button>
                         <NavLink to={`/frei/${eigAnzeige._id}`}>
-                                <Button size="sm" className="mr-2" variant="outline-danger">Details</Button>
+                                <Button size="sm" className="mr-2" variant="outline-success">Details</Button>
                         </NavLink>
                     </Row>
                 </Card.Body>

@@ -14,7 +14,7 @@ function FreiItem({freigarten, merkClick, merkFreiItems}) {
     return (
             <Container>
                 <Row>
-                <Card border="success" className="mb-1">
+                <Card border="success" className="mb-1" style={{ width: '26rem' }}>
                     <Card.Body className="m-1">
                         <Row>
                         <p className="mb-2 text-muted"><GeoAltFill className="mr-1" color="green" size={12}/>{freigarten.kgv.kgvname}</p>
