@@ -28,7 +28,9 @@ function Header() {
                         <Nav.Link href='/'><Button className="mr-1" variant="success">Vereine</Button></Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
-                        <Nav.Link href="/frei"><Button className="mr-1" variant="success">Freie Gärten</Button></Nav.Link>
+                        <NavLink>
+                            <Nav.Link href="/frei"><Button className="mr-1" variant="success">Freie Gärten</Button></Nav.Link>
+                        </NavLink>
                     </Nav.Item>
                     <Nav.Item className="ml-6">
                         <Nav.Link href="/inserieren"><Button className="mr-1" variant="success">Anzeige aufgeben</Button></Nav.Link>
